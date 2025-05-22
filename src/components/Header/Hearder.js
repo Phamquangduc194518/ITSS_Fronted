@@ -14,6 +14,7 @@ const [user, setUser] = useState(null);
     async function fetchProfile() {
       try {
         const res = await getProfile(); 
+        console.error(res);
         setUser(res.data.data);
       } catch (err) {
         console.error('Lỗi khi lấy thông tin user:', err);
