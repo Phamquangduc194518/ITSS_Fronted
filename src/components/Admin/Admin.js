@@ -102,7 +102,7 @@ export default function AdminPanel() {
 
   const handleAddCourse = async (e) => {
     e.preventDefault();
-    if (!newCourse.name || !newCourse.code|| !newCourse.imgUrl || !newCourse.department_id) return;
+    if (!newCourse.name || !newCourse.code || !newCourse.imgUrl || !newCourse.department_id) return;
     console.log('📤 Dữ liệu gửi đến API (createCourse):', newCourse);
     try {
       const res = await createCourse(newCourse);
@@ -344,7 +344,7 @@ export default function AdminPanel() {
                       <p className="user-email">{user.email}</p>
                       <p className="user-role">{user.role}</p>
                     </div>
-                    <button 
+                    <button
                       className="delete-user-btn"
                       onClick={() => handleDeleteUser(user.id)}
                     >
@@ -373,19 +373,19 @@ export default function AdminPanel() {
                       <p className="document-description">{doc.description}</p>
                     </div>
                     <div className="document-actions">
-                      <button 
+                      <button
                         className="preview-btn"
                         onClick={() => handlePreviewDocument(doc)}
                       >
                         <FaEye /> Xem trước
                       </button>
-                      <button 
+                      <button
                         className="approve-btn"
                         onClick={() => handleApproveDocument(doc.id)}
                       >
                         <FaCheckCircle /> Duyệt
                       </button>
-                      <button 
+                      <button
                         className="reject-btn"
                         onClick={() => handleRejectDocument(doc.id)}
                       >
@@ -404,7 +404,7 @@ export default function AdminPanel() {
             <div className="modal-content">
               <div className="modal-header">
                 <h2>{selectedDocument.title}</h2>
-                <button 
+                <button
                   className="close-btn"
                   onClick={() => setShowDocumentPreview(false)}
                 >
@@ -412,15 +412,15 @@ export default function AdminPanel() {
                 </button>
               </div>
               <div className="modal-body">
-                <iframe 
-                  src={selectedDocument.file_path} 
+                <iframe
+                  src={selectedDocument.file_path}
                   title="Document Preview"
                   width="100%"
                   height="600px"
                 />
               </div>
               <div className="modal-footer">
-                <button 
+                <button
                   className="approve-btn"
                   onClick={() => {
                     handleApproveDocument(selectedDocument.id);
@@ -429,7 +429,7 @@ export default function AdminPanel() {
                 >
                   <FaCheckCircle /> Duyệt
                 </button>
-                <button 
+                <button
                   className="reject-btn"
                   onClick={() => {
                     handleRejectDocument(selectedDocument.id);

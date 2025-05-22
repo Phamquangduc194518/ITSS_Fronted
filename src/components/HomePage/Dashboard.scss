@@ -195,6 +195,10 @@
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 22px;
 }
+a.dash-doc-card {
+  text-decoration: none;
+  color: inherit;
+}
 .dash-school-card {
   background: #fff;
   border-radius: 14px;

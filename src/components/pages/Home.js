@@ -63,7 +63,6 @@ const Home = () => {
 
   return (
     <div className="homepage">
-      {/* Header */}
       <header className="header">
         <div className="header__left">
           <img src={logoImg} alt="logo" className="header__logo" />
@@ -111,7 +110,6 @@ const Home = () => {
           </form>
         </div>
 
-        {/* Search Results */}
         {showSearchResults && (
           <section className="search-results-section">
             <div className="section-title">🔍 Kết quả tìm kiếm</div>
@@ -129,6 +127,7 @@ const Home = () => {
                     state={{ document: doc }}
                     className="doc-card"
                     key={doc.id}
+                    style={{ textDecoration: 'none', color: 'inherit' }}
                   >
                     <div className="doc-type">{doc.Course.Department.Faculty.name}</div>
                     <div className="doc-title">{doc.title}</div>
@@ -140,8 +139,6 @@ const Home = () => {
             )}
           </section>
         )}
-
-        {/* Featured Documents */}
         <section className="featured-docs-section">
           <div className="section-title">⭐ Tài liệu nổi bật</div>
           <div className="docs-list">
@@ -150,6 +147,7 @@ const Home = () => {
                 to={`/documents/${doc.id}`}
                 className="doc-card"
                 key={doc.id}
+                style={{ textDecoration: 'none', color: 'inherit' }}
               >
                 <div className="doc-type">{doc.Course?.Department?.Faculty?.name ?? 'Unknown'}</div>
                 <div className="doc-title">{doc.title}</div>

@@ -27,16 +27,19 @@
     font-weight: 800;
     color: #009688;
     letter-spacing: 1px;
+
     span {
       color: #009688;
       font-weight: 800;
       font-size: 1.5rem;
       letter-spacing: 1px;
     }
+
     svg {
       color: #009688;
     }
   }
+
   .adminpanel-tabs {
     display: flex;
     gap: 24px;
@@ -46,6 +49,7 @@
     flex: 1;
     justify-content: center;
     align-items: center;
+
     .adminpanel-tab {
       color: #222;
       background: none;
@@ -61,25 +65,29 @@
       gap: 8px;
       cursor: pointer;
       transition: background 0.2s, color 0.2s;
-      &:hover, &.active {
+
+      &:hover,
+      &.active {
         background: #e0f7fa;
         color: #009688;
       }
     }
   }
+
   .login-btn {
-  background: #fff;
-  color: #388e3c;
-  border: 1.5px solid #388e3c;
-  border-radius: 8px;
-  padding: 8px 16px;
-  &:hover {
-    background: #388e3c;
-    color: #fff;
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 4px 16px #b2dfdb33;
+    background: #fff;
+    color: #388e3c;
+    border: 1.5px solid #388e3c;
+    border-radius: 8px;
+    padding: 8px 16px;
+
+    &:hover {
+      background: #388e3c;
+      color: #fff;
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 4px 16px #b2dfdb33;
+    }
   }
-}
 }
 
 .adminpanel-content {
@@ -94,12 +102,14 @@
   box-shadow: 0 4px 24px #b2dfdb33;
   padding: 28px 24px 18px 24px;
   margin-bottom: 32px;
+
   h2 {
     font-size: 1.2rem;
     font-weight: 700;
     color: #009688;
     margin-bottom: 18px;
   }
+
   .adminpanel-form {
     display: flex;
     flex-direction: column;
@@ -213,9 +223,10 @@
       }
     }
   }
+
   .adminpanel-list {
     margin-top: 24px;
-    
+
     h3 {
       color: #009688;
       font-size: 1.2rem;
@@ -642,35 +653,45 @@
     height: auto;
     padding: 10px 2vw;
     gap: 8px;
+
     .adminpanel-logo {
       font-size: 1.3rem;
+
       span {
         font-size: 1.1rem;
       }
+
       svg {
         font-size: 1.3rem;
       }
     }
+
     .adminpanel-tabs {
       gap: 10px;
       font-size: 1rem;
       flex-wrap: wrap;
       justify-content: center;
     }
+
     .adminpanel-user {
       font-size: 1rem;
       gap: 6px;
     }
   }
+
   .adminpanel-content {
     padding: 0 1vw 24px 1vw;
   }
+
   .adminpanel-section {
     padding: 14px 4px 10px 4px;
   }
-  .users-grid, .documents-grid {
+
+  .users-grid,
+  .documents-grid {
     grid-template-columns: 1fr;
   }
+
   .document-preview-modal {
     .modal-content {
       width: 95%;

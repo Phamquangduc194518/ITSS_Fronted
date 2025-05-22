@@ -3,6 +3,7 @@ import { FaSearch, FaUserCircle, FaBookmark, FaFilter, FaChevronDown } from 'rea
 import './Dashboard.scss';
 import { useNavigate } from 'react-router-dom';
 import { getdocumentOfHome, getKhoa, getSchool, searchDocuments } from '../../auth/authAPI';
+import { Link } from 'react-router-dom';
 
 
 const Dashboard = () => {
@@ -76,12 +77,11 @@ const Dashboard = () => {
   const filteredDocs = docs.filter(doc =>
     (!filter.school || doc.Course?.Department?.Faculty?.name === filter.school) &&
     (!filter.khoa || doc.Course?.Department?.name === filter.khoa) &&
-    (!filter.course || doc.Course?.name === filter.course) 
+    (!filter.course || doc.Course?.name === filter.course)
   );
 
   return (
     <div className="dashboard-bg">
-      {/* Search & Filter */}
       <section className="dash-search-section">
         <form className="dash-search-bar" onSubmit={handleSearch}>
           <input
@@ -116,8 +116,6 @@ const Dashboard = () => {
           </select>
         </div>
       </section>
-
-      {/* Search Results */}
       {showSearchResults && (
         <section className="dash-section">
           <div className="dash-section-title">🔍 Kết quả tìm kiếm</div>
@@ -130,8 +128,8 @@ const Dashboard = () => {
           ) : (
             <div className="dash-docs-list">
               {searchResults.map((doc) => (
-                <div className="dash-doc-card" key={doc.id}>
-                  <img src={doc.imgUrl} alt="cover" className="dash-doc-cover" />
+                <Link to={`/documents/${doc.id}`} className="dash-doc-card" key={doc.id}>
+                  <img src={doc.Course.imgUrl} alt="cover" className="dash-doc-cover" />
                   <div className="dash-doc-info">
                     <div className="dash-doc-title">{doc.title}</div>
                     <div className="dash-doc-meta">
@@ -144,20 +142,19 @@ const Dashboard = () => {
                     </div>
                   </div>
                   {doc.isNew && <span className="dash-doc-new">Mới</span>}
-                </div>
+                </Link>
               ))}
             </div>
           )}
         </section>
       )}
 
-      {/* Newest Documents */}
       <section className="dash-section">
         <div className="dash-section-title">📄 Tài liệu mới nhất</div>
         <div className="dash-docs-list">
           {filteredDocs.map((doc) => (
-            <div className="dash-doc-card" key={doc.id}>
-              <img src={doc.imgUrl} alt="cover" className="dash-doc-cover" />
+            <Link to={`/documents/${doc.id}`} className="dash-doc-card" key={doc.id}>
+              <img src={doc.Course.imgUrl} alt="cover" className="dash-doc-cover" />
               <div className="dash-doc-info">
                 <div className="dash-doc-title">{doc.title}</div>
                 <div className="dash-doc-meta">
@@ -165,12 +162,12 @@ const Dashboard = () => {
                 </div>
                 <div className="dash-doc-date">{doc.createdAt}</div>
                 <div className="dash-doc-actions">
-                  <button className="dash-doc-view">Xem nhanh</button>
-                  <button className="dash-doc-bookmark"><FaBookmark /></button>
+                  <span className="dash-doc-view">Xem nhanh</span>
+                  <span className="dash-doc-bookmark"><FaBookmark /></span>
                 </div>
               </div>
               {doc.isNew && <span className="dash-doc-new">Mới</span>}
-            </div>
+            </Link>
           ))}
         </div>
       </section>
@@ -198,8 +195,6 @@ const Dashboard = () => {
           ))}
         </div>
       </section>
-
-      {/* Subjects */}
       <section className="dash-section">
         <div className="dash-section-title">📚 Các môn học</div>
         <div className="dash-subjects-list">

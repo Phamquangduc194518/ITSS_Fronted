@@ -45,9 +45,8 @@ const DocumentDetail = () => {
 
   const handleDownload = () => {
     setDownloadCount(prev => prev + 1);
-    // TODO: gọi API để tăng lượt tải trên server nếu cần
-    if (doc?.fileUrl) {
-      window.open(doc.fileUrl, '_blank');
+    if (doc?.file_path) {
+      window.open(doc.file_path, '_blank');
     }
   };
 
@@ -135,20 +134,9 @@ const DocumentDetail = () => {
               </Card>
             </Col>
           </Row>
-
-          {/* Tags Section */}
-          <div className="tags-section">
-            <Title level={4}>Tags</Title>
-            <Space wrap>
-              {doc.tags?.map((tag, i) => (
-                <Tag key={i} color="blue">{tag}</Tag>
-              ))}
-            </Space>
-          </div>
         </Space>
       </Card>
 
-      {/* Preview Modal */}
       <Modal
         title={doc.title}
         open={previewVisible}
@@ -160,7 +148,7 @@ const DocumentDetail = () => {
         bodyStyle={{ padding: '0', height: '80vh' }}
       >
         <iframe
-          src={doc.fileUrl}
+          src={doc.file_path}
           style={{ width: '100%', height: '100%', border: 'none' }}
           title="Document Preview"
         />
