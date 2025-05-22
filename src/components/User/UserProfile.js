@@ -4,7 +4,7 @@ import './UserProfile.scss';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../auth/authSlice';
-import { getDepartments, getProfile, getSchool, getCourses } from '../../auth/authAPI';
+import { getDepartments, getProfile, getSchool, getCourses, createDocumentByUser } from '../../auth/authAPI';
 import { put } from '@vercel/blob';
 
 const myDocs = [
@@ -32,9 +32,10 @@ const UserProfile = () => {
   const [form, setForm] = useState({
     title: '',
     description: '',
-    file_path: '',
+    file: null,
     course_id: '',
     year_id: '',
+    thumbnail: '',
   });
 
   const dispatch = useDispatch();
@@ -50,13 +51,7 @@ const UserProfile = () => {
       try {
         const res = await getProfile();
         setUser(res.data.data);
-        // Set initial form values from user data
-        setForm(prev => ({
-          ...prev,
-          school: res.data.data.school,
-          faculty: res.data.data.khoa,
-          course: res.data.data.course
-        }));
+        // Không cần set giá trị mặc định cho các trường không còn dùng
       } catch (err) {
         console.error('Lỗi khi lấy thông tin user:', err);
       }
@@ -109,7 +104,7 @@ const UserProfile = () => {
       [name]: files ? files[0] : value,
     }));
   };
-
+  
   const handleLogout = () => {
     dispatch(logout());
     navigate('/', { replace: true });
@@ -118,44 +113,35 @@ const UserProfile = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     if (!form.file) return alert('Chọn file đã nhé!');
-
     setUploading(true);
     try {
-    
       const arrayBuffer = await form.file.arrayBuffer();
       const buffer = new Uint8Array(arrayBuffer);
-
       const blobPath = `docs/${Date.now()}-${form.file.name}`;
-
       const { url } = await put(blobPath, buffer, {
         access: 'public',
         token: process.env.REACT_APP_BLOB_READ_WRITE_TOKEN,
       });
-
       console.log('File uploaded:', url);
-
-      const saveRes = await fetch('/api/documents', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          title: form.title,
-          description: form.description,
-          file_path: url,
-          course_id: form.course_id,
-          year_id: form.year_id,
-        }),
-      });
-      if (!saveRes.ok) throw new Error('Lưu tài liệu thất bại');
-
+      const payload = {
+        title: form.title,
+        description: form.description,
+        file_path: url,
+        course_id: parseInt(form.course_id),
+        year_id: parseInt(form.year_id),
+        thumbnail: form.thumbnail,
+      };
+      console.log('DỮ LIỆU GỬI LÊN:', payload);
+      const saveRes = await createDocumentByUser(payload);
+      if (saveRes.status !== 200 && saveRes.status !== 201) throw new Error('Lưu tài liệu thất bại');
       alert('Đăng tài liệu thành công!');
       setForm({
         title: '',
-        school: '',
-        faculty: '',
-        subject: '',
-        desc: '',
-        tags: '',
+        description: '',
         file: null,
+        course_id: '',
+        year_id: '',
+        thumbnail: '',
       });
     } catch (err) {
       console.error(err);
@@ -212,61 +198,40 @@ const UserProfile = () => {
               onChange={handleChange}
               required
             />
-            <select
-              name="school"
-              value={form.school}
+            <textarea
+              name="description"
+              placeholder="Mô tả ngắn về tài liệu"
+              value={form.description}
               onChange={handleChange}
+              rows={2}
               required
-              className="profile-select"
-            >
-              <option value="">Chọn trường</option>
-              {school?.map(s => (
-                <option key={s.id} value={s.name} selected={s.name === user?.school}>
-                  {s.name}
-                </option>
-              ))}
-            </select>
-            <select
-              name="faculty"
-              value={form.faculty}
+            />
+            <input
+              type="text"
+              name="thumbnail"
+              placeholder="Đường dẫn ảnh thumbnail (nếu có)"
+              value={form.thumbnail}
               onChange={handleChange}
-              required
-              className="profile-select"
-            >
-              <option value="">Chọn khoa</option>
-              {khoa?.map(k => (
-                <option key={k.id} value={k.name} selected={k.name === user?.khoa}>
-                  {k.name}
-                </option>
-              ))}
-            </select>
+            />
             <select
-              name="course"
-              value={form.course}
+              name="course_id"
+              value={form.course_id}
               onChange={handleChange}
               required
               className="profile-select"
             >
               <option value="">Chọn môn học</option>
               {courses?.map(c => (
-                <option key={c.id} value={c.name} selected={c.name === user?.course}>
-                  {c.name}
-                </option>
+                <option key={c.id} value={c.id}>{c.name}</option>
               ))}
             </select>
-            <textarea
-              name="desc"
-              placeholder="Mô tả ngắn về tài liệu"
-              value={form.desc}
-              onChange={handleChange}
-              rows={2}
-            />
             <input
               type="text"
-              name="tags"
-              placeholder="Tag (cách nhau bởi dấu phẩy)"
-              value={form.tags}
+              name="year_id"
+              placeholder="Năm học (ID hoặc nhập tay)"
+              value={form.year_id}
               onChange={handleChange}
+              required
             />
             <input
               type="file"
@@ -275,8 +240,8 @@ const UserProfile = () => {
               onChange={handleChange}
               required
             />
-            <button type="submit" className="profile-upload-btn">
-              <FaCloudUploadAlt /> Đăng tài liệu
+            <button type="submit" className="profile-upload-btn" disabled={uploading}>
+              <FaCloudUploadAlt /> {uploading ? 'Đang tải lên...' : 'Đăng tài liệu'}
             </button>
           </form>
         </section>

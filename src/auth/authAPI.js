@@ -56,6 +56,7 @@ const getDocument = (id) => api.get(`/api/admin/documents/${id}`);
 const createDocumentByAdmin = (data) => api.post('/api/admin/documents', data);
 const updateDocumentByAdmin = (id, data) => api.patch(`/api/admin/documents/${id}`, data);
 const deleteDocumentByAdmin = (id) => api.delete(`/api/admin/documents/${id}`);
+const createDocumentByUser = (data) => api.post('/api/user/documents', data);
 
 export {
   handleLoginAPI,
@@ -84,6 +85,7 @@ export {
   getDocument,
   deleteDocumentByAdmin,
   getDocuments,
-  searchDocuments
+  searchDocuments,
+  createDocumentByUser
 
 }

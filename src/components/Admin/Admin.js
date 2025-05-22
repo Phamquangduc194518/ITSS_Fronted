@@ -413,7 +413,7 @@ export default function AdminPanel() {
               </div>
               <div className="modal-body">
                 <iframe 
-                  src={selectedDocument.fileUrl} 
+                  src={selectedDocument.file_path} 
                   title="Document Preview"
                   width="100%"
                   height="600px"
