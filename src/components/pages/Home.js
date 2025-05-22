@@ -35,7 +35,7 @@ const Home = () => {
     async function fetchDocs() {
       try {
         const res = await getdocumentOfHome();
-        setFeaturedDocs(res.data.data);
+        setFeaturedDocs(res.data.data || []);
       } catch (err) {
         console.error(err);
         setError('Không tải được tài liệu');
@@ -145,13 +145,13 @@ const Home = () => {
         <section className="featured-docs-section">
           <div className="section-title">⭐ Tài liệu nổi bật</div>
           <div className="docs-list">
-            {featuredDocs.map(doc => (
+            {featuredDocs?.map(doc => (
               <Link
                 to={`/documents/${doc.id}`}
                 className="doc-card"
                 key={doc.id}
               >
-                <div className="doc-type">{doc.Course.Department.Faculty.name}</div>
+                <div className="doc-type">{doc.Course?.Department?.Faculty?.name ?? 'Unknown'}</div>
                 <div className="doc-title">{doc.title}</div>
                 <div className="doc-date">{new Date(doc.createdAt).toLocaleDateString()}</div>
                 <button className="readmore">READ MORE</button>
