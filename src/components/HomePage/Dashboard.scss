@@ -1,0 +1,282 @@
+.dashboard-bg {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(120deg, #e0f7fa 0%, #f1f8e9 60%, #b2dfdb 100%);
+  font-family: 'Inter', Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.dash-search-section {
+  max-width: 1200px;
+  margin: 32px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  .dash-search-bar {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    input {
+      flex: 1;
+      padding: 14px 18px;
+      border-radius: 12px 0 0 12px;
+      border: 1.5px solid #b2dfdb;
+      font-size: 1.1rem;
+      background: #fff;
+      color: #222;
+      outline: none;
+      transition: border 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px #b2dfdb22;
+      &:focus {
+        border: 1.5px solid #009688;
+        box-shadow: 0 4px 16px #b2dfdb33;
+        background: #f1f8e9;
+      }
+    }
+    button {
+      padding: 0 18px;
+      border-radius: 0 12px 12px 0;
+      border: 1.5px solid #b2dfdb;
+      background: #b2dfdb;
+      color: #388e3c;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      &:hover {
+        background: #009688;
+        color: #fff;
+      }
+    }
+  }
+  .dash-filters {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 1rem;
+    color: #388e3c;
+    select {
+      padding: 7px 16px;
+      border-radius: 8px;
+      border: 1.5px solid #b2dfdb;
+      background: #fff;
+      color: #388e3c;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.2s;
+      &:focus {
+        border: 1.5px solid #009688;
+      }
+    }
+    svg {
+      margin-right: 4px;
+    }
+  }
+}
+
+.dash-section {
+  max-width: 1200px;
+  margin: 36px auto 0 auto;
+  .dash-section-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #388e3c;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+.dash-docs-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+}
+.dash-doc-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #b2dfdb33;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 18px 18px 14px 18px;
+  position: relative;
+  transition: box-shadow 0.2s, transform 0.2s, border 0.2s;
+  border: 2px solid transparent;
+  &:hover {
+    box-shadow: 0 8px 32px #b2dfdb55;
+    border: 2px solid #b2dfdb;
+    transform: translateY(-4px) scale(1.02);
+  }
+  .dash-doc-cover {
+    width: 70px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 10px;
+    background: #e0f7fa;
+    box-shadow: 0 2px 8px #b2dfdb22;
+  }
+  .dash-doc-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    .dash-doc-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 2px;
+    }
+    .dash-doc-meta {
+      font-size: 0.98rem;
+      color: #388e3c;
+      margin-bottom: 2px;
+    }
+    .dash-doc-date {
+      font-size: 0.95rem;
+      color: #009688;
+      margin-bottom: 6px;
+    }
+    .dash-doc-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 4px;
+      .dash-doc-view {
+        background: #b2dfdb;
+        color: #388e3c;
+        border: none;
+        border-radius: 8px;
+        padding: 6px 18px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+        &:hover {
+          background: #009688;
+          color: #fff;
+        }
+      }
+      .dash-doc-bookmark {
+        background: #fff;
+        color: #009688;
+        border: 1.5px solid #b2dfdb;
+        border-radius: 8px;
+        padding: 6px 10px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+        &:hover {
+          background: #b2dfdb;
+          color: #388e3c;
+        }
+      }
+    }
+  }
+  .dash-doc-new {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    background: #009688;
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 8px;
+    padding: 3px 10px;
+    letter-spacing: 1px;
+  }
+}
+
+.dash-schools-list, .dash-faculties-list, .dash-subjects-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 22px;
+}
+.dash-school-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px #b2dfdb33;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 8px 12px 8px;
+  gap: 8px;
+  transition: box-shadow 0.2s, transform 0.2s, border 0.2s;
+  border: 2px solid transparent;
+  &:hover {
+    box-shadow: 0 6px 24px #b2dfdb55;
+    border: 2px solid #b2dfdb;
+    transform: translateY(-2px) scale(1.03);
+  }
+  img {
+    width: 54px;
+    height: 54px;
+    object-fit: cover;
+    border-radius: 50%;
+    background: #e0f7fa;
+    box-shadow: 0 2px 8px #b2dfdb22;
+  }
+  .dash-school-name {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #388e3c;
+    text-align: center;
+  }
+}
+
+.dash-faculty-card, .dash-subject-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #b2dfdb33;
+  padding: 14px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  border: 2px solid transparent;
+  transition: box-shadow 0.2s, border 0.2s, transform 0.2s;
+  &:hover {
+    box-shadow: 0 6px 24px #b2dfdb55;
+    border: 2px solid #b2dfdb;
+    transform: translateY(-2px) scale(1.03);
+  }
+  .dash-faculty-name, .dash-subject-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #388e3c;
+  }
+  .dash-faculty-school, .dash-subject-faculty, .dash-subject-school {
+    font-size: 0.97rem;
+    color: #009688;
+  }
+}
+
+.dash-loading, .dash-error, .dash-no-results {
+  text-align: center;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #b2dfdb33;
+  font-size: 1.1rem;
+  color: #388e3c;
+}
+
+.dash-error {
+  color: #d32f2f;
+}
+
+.dash-no-results {
+  color: #009688;
+}
+
+@media (max-width: 900px) {
+  .dash-header, .dash-section, .dash-search-section {
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+  .dash-section {
+    margin-top: 24px;
+  }
+}

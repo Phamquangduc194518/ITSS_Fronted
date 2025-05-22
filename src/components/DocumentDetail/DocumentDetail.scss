@@ -1,0 +1,134 @@
+.document-detail-container {
+  .ant-card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  .document-header {
+    .anticon {
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    .ant-tag {
+      padding: 4px 12px;
+      border-radius: 16px;
+      font-weight: 500;
+    }
+  }
+
+  .document-info {
+    .ant-descriptions {
+      background: #fafafa;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .ant-descriptions-item-label {
+      font-weight: 600;
+      color: #262626;
+    }
+  }
+
+  .action-buttons {
+    .ant-btn {
+      height: 48px;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+
+      &.ant-btn-primary {
+        background: linear-gradient(45deg, #1890ff, #096dd9);
+        border: none;
+        box-shadow: 0 2px 8px rgba(24, 144, 255, 0.35);
+
+        &:hover {
+          background: linear-gradient(45deg, #40a9ff, #1890ff);
+          box-shadow: 0 4px 12px rgba(24, 144, 255, 0.45);
+        }
+      }
+    }
+  }
+
+  .tags-section {
+    .ant-tag {
+      padding: 4px 12px;
+      border-radius: 16px;
+      font-size: 13px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(24, 144, 255, 0.15);
+      }
+    }
+  }
+
+  // Preview Modal Styles
+  .ant-modal {
+    .ant-modal-content {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .ant-modal-header {
+      background: #fafafa;
+      border-bottom: 1px solid #f0f0f0;
+      padding: 16px 24px;
+
+      .ant-modal-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #262626;
+      }
+    }
+
+    .ant-modal-close {
+      top: 16px;
+      right: 16px;
+      color: #666;
+
+      &:hover {
+        color: #1890ff;
+      }
+    }
+
+    .ant-modal-body {
+      background: #fff;
+    }
+  }
+
+  // Responsive styles
+  @media (max-width: 768px) {
+    padding: 16px;
+
+    .ant-card {
+      margin: 0 -16px;
+      border-radius: 0;
+    }
+
+    .action-buttons {
+      .ant-btn {
+        height: 40px;
+      }
+    }
+
+    .ant-modal {
+      .ant-modal-content {
+        border-radius: 0;
+      }
+    }
+  }
+}

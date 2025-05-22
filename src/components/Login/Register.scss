@@ -1,0 +1,108 @@
+.register-bg {
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(120deg, #e0f7fa 0%, #f1f8e9 60%, #b2dfdb 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-form {
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 4px 32px #a18cd144;
+  padding: 44px 38px 36px 38px;
+  min-width: 340px;
+  max-width: 94vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.register-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #6c2596;
+  margin-bottom: 12px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.register-label {
+  align-self: flex-start;
+  font-size: 1.08rem;
+  color: #6c2596;
+  margin-bottom: 2px;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+.register-input {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1.5px solid #a18cd1;
+  font-size: 1.08rem;
+  background: #fff;
+  color: #222;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px #a18cd122;
+  &:focus {
+    border: 1.5px solid #6c2596;
+    box-shadow: 0 2px 8px #a18cd133;
+    background: #f8f6ff;
+  }
+}
+
+.register-pass-group {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  .register-input {
+    padding-right: 38px;
+    margin-bottom: 0;
+  }
+  .register-eye {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a18cd1;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    &:hover, &:focus {
+      color: #6c2596;
+    }
+  }
+}
+
+.register-btn {
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 8px;
+  border: 2px solid #6c2596;
+  background: #fff;
+  color: #6c2596;
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+  transition: background 0.2s, color 0.2s;
+  &:hover {
+    background: #6c2596;
+    color: #fff;
+  }
+}
+
+@media (max-width: 600px) {
+  .register-form {
+    padding: 24px 4vw 18px 4vw;
+    min-width: 0;
+  }
+}
