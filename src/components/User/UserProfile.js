@@ -129,7 +129,7 @@ const UserProfile = () => {
 
       const { url } = await put(blobPath, buffer, {
         access: 'public',
-        token: process.env.REACT_APP_BLOB_READ_WRITE_TOKEN,
+        token: process.env.BLOB_READ_WRITE_TOKEN,
       });
 
       console.log('File uploaded:', url);
