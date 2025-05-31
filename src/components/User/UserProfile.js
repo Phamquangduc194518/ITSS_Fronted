@@ -4,30 +4,9 @@ import './UserProfile.scss';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../auth/authSlice';
-import { getDepartments, getProfile, getSchool, getCourses, createDocumentByUser } from '../../auth/authAPI';
+import { getDepartments, getProfile, getSchool, getCourses, createDocumentByUser, getDocumentByUser } from '../../auth/authAPI';
 import { put } from '@vercel/blob';
 
-const myDocs = [
-  {
-    title: 'Tài liệu Python cơ bản',
-    date: '2024-06-01',
-    status: 'Đã duyệt',
-    downloads: 320,
-    views: 500,
-    rating: 4.9,
-    file: '/doc1.pdf',
-  },
-  {
-    title: 'Đề cương Kinh tế vi mô',
-    date: '2024-05-28',
-    status: 'Chờ duyệt',
-    downloads: 12,
-    views: 40,
-    rating: 0,
-    file: '/doc2.pdf',
-  },
-  // ... thêm tài liệu
-];
 const UserProfile = () => {
   const [form, setForm] = useState({
     title: '',
@@ -45,6 +24,7 @@ const UserProfile = () => {
   const [school, setSchool] = useState(null);
   const [khoa, setKhoa] = useState(null);
   const [courses, setCourses] = useState(null);
+  const [myDocs, setMyDocs] = useState([]);
 
   useEffect(() => {
     async function fetchProfile() {
@@ -56,6 +36,18 @@ const UserProfile = () => {
       }
     }
     fetchProfile()
+  }, [])
+
+  useEffect(() => {
+    async function fetchMyDocs() {
+      try {
+        const res = await getDocumentByUser();
+        setMyDocs(res.data.data);
+      } catch (err) {
+        console.error('Lỗi khi lấy tài liệu của tôi:', err);
+      }
+    }
+    fetchMyDocs();
   }, [])
 
   useEffect(() => {
@@ -249,20 +241,23 @@ const UserProfile = () => {
         <section className="profile-my-docs">
           <div className="profile-my-docs-title">Tài liệu bạn đã đăng</div>
           <div className="profile-my-docs-list">
-            {myDocs.map((doc, idx) => (
-              <div className="profile-doc-card" key={idx}>
+            {myDocs.map((doc) => (
+              <div className="profile-doc-card" key={doc.id}>
+                {doc.imgUrl && (
+                  <img src={doc.imgUrl} alt={doc.title} className="profile-doc-img" style={{width: '100%', maxHeight: 120, objectFit: 'cover', borderRadius: 8, marginBottom: 8}} />
+                )}
                 <div className="profile-doc-title">{doc.title}</div>
                 <div className="profile-doc-meta">
-                  <span>Ngày đăng: {doc.date}</span>
-                  <span>Trạng thái: <b>{doc.status}</b></span>
+                  <span>Ngày đăng: {new Date(doc.createdAt).toLocaleDateString()}</span>
+                  <span>Trạng thái: <b>{doc.status === 'approved' ? 'Đã duyệt' : doc.status === 'pending' ? 'Chờ duyệt' : doc.status}</b></span>
                 </div>
                 <div className="profile-doc-stats">
-                  <span><FaEye /> {doc.views}</span>
-                  <span><FaDownload /> {doc.downloads}</span>
+                  <span><FaEye /> {doc.views || 0}</span>
+                  <span><FaDownload /> {doc.downloads || 0}</span>
                   <span><FaStar color="#fbc02d" /> {doc.rating > 0 ? doc.rating : 'Chưa có'}</span>
                 </div>
                 <div className="profile-doc-actions">
-                  <a href={doc.file} target="_blank" rel="noopener noreferrer" className="profile-doc-view">Xem</a>
+                  <a href={doc.file_path} target="_blank" rel="noopener noreferrer" className="profile-doc-view">Xem</a>
                   <button className="profile-doc-edit"><FaEdit /></button>
                   <button className="profile-doc-delete"><FaTrash /></button>
                 </div>

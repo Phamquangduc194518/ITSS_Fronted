@@ -37,6 +37,8 @@ const searchDocuments = (keyword) => {
 const getCourse = () =>{
   return api.get('/api/user/courses');
 }
+
+const getDocumentByUser = () => api.get('/api/user/byUser/documents');
 const getAllUsers = () => api.get('/api/admin/users');
 const deleteUser = (id) => api.delete(`/api/admin/users/${id}`);
 
@@ -61,6 +63,10 @@ const createDocumentByAdmin = (data) => api.post('/api/admin/documents', data);
 const updateDocumentByAdmin = (id, data) => api.patch(`/api/admin/documents/${id}`, data);
 const deleteDocumentByAdmin = (id) => api.delete(`/api/admin/documents/${id}`);
 const createDocumentByUser = (data) => api.post('/api/user/documents', data);
+const createRating= (data) => api.post('/api/user/comments', data);
+const getComment= (documentId) => api.get(`/api/user/comments/${documentId}`);
+const reactToComment = (commentId, userId, type) =>
+  api.post(`/api/user/comments/${commentId}/react`, { userId, type });
 
 export {
   handleLoginAPI,
@@ -91,6 +97,9 @@ export {
   getDocuments,
   searchDocuments,
   createDocumentByUser,
-  getCourse
-
+  getCourse,
+  createRating,
+  getComment,
+  reactToComment,
+  getDocumentByUser
 }
