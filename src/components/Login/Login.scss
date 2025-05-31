@@ -17,14 +17,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
 }
 
 .login-title {
   font-size: 2.4rem;
   font-weight: 700;
   color: #6c2596;
-  margin-bottom: 12px;
+  margin-bottom: 30px;
   text-align: center;
   letter-spacing: 1px;
 }
@@ -36,6 +35,7 @@
   margin-bottom: 2px;
   margin-top: 8px;
   font-weight: 500;
+  margin-bottom: 3px;
 }
 
 .login-input {
@@ -61,6 +61,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
   .login-input {
     padding-right: 38px;
     margin-bottom: 0;

@@ -1,17 +1,17 @@
 // src/components/Register/Register.js
 import React, { useState } from 'react';
-import { useNavigate }      from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { handleRegisterAPI } from '../../auth/authAPI';
 import './Register.scss';
 
 export default function Register() {
   const [username, setUsername] = useState('');
-  const [email,    setEmail]    = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPass, setShowPass] = useState(false);
-  const [loading,  setLoading]  = useState(false);
-  const [error,    setError]    = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
@@ -40,24 +40,28 @@ export default function Register() {
         {error && <div className="form-error">{error}</div>}
 
         <label className="register-label">Tên đăng nhập</label>
-        <input
-          className="register-input"
-          type="text"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-          placeholder="Nguyễn Văn A"
-          required
-        />
+        <div className="register-pass-group">
+          <input
+            className="register-input"
+            type="text"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+            placeholder="Nguyễn Văn A"
+            required
+          />
+        </div>
 
         <label className="register-label">Email</label>
-        <input
-          className="register-input"
-          type="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          placeholder="you@example.com"
-          required
-        />
+        <div className="register-pass-group">
+          <input
+            className="register-input"
+            type="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            placeholder="you@example.com"
+            required
+          />
+        </div>
 
         <label className="register-label">Mật khẩu</label>
         <div className="register-pass-group">

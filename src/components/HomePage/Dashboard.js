@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FaSearch, FaUserCircle, FaBookmark, FaFilter, FaChevronDown } from 'react-icons/fa';
 import './Dashboard.scss';
 import { useNavigate } from 'react-router-dom';
-import { getdocumentOfHome, getKhoa, getSchool, searchDocuments } from '../../auth/authAPI';
+import { getCourse, getdocumentOfHome, getKhoa, getSchool, searchDocuments } from '../../auth/authAPI';
 import { Link } from 'react-router-dom';
 
 
@@ -12,6 +12,7 @@ const Dashboard = () => {
   const [schools, setSchools] = useState([]);
   const [khoa, setKhoa] = useState([]);
   const [docs, setDocs] = useState([]);
+  const [course, setCourse] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -57,6 +58,19 @@ const Dashboard = () => {
     fetchDocs();
   }, [])
 
+  useEffect(() => {
+    async function fetchCourse() {
+      try {
+        const res = await getCourse();
+        setCourse(res.data.data);
+      } catch (err) {
+        console.error(err);
+        setError('Không có môn học');
+      }
+    }
+    fetchCourse();
+  }, [])
+
   const handleSearch = async e => {
     e.preventDefault();
     setError(null);
@@ -79,6 +93,17 @@ const Dashboard = () => {
     (!filter.khoa || doc.Course?.Department?.name === filter.khoa) &&
     (!filter.course || doc.Course?.name === filter.course)
   );
+
+  const formatDateVN = (isoDate) => {
+  return new Date(isoDate).toLocaleString('vi-VN', {
+    timeZone: 'Asia/Ho_Chi_Minh',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+};
 
   return (
     <div className="dashboard-bg">
@@ -112,7 +137,7 @@ const Dashboard = () => {
           </select>
           <select value={filter.course} onChange={e => setFilter(f => ({ ...f, course: e.target.value }))}>
             <option value="">Tất cả môn</option>
-            {docs.map(docs => <option key={docs.Course?.id} value={docs.Course?.name}>{docs.Course?.name}</option>)}
+            {course.map(course => <option key={course?.id} value={course?.name}>{course?.name}</option>)}
           </select>
         </div>
       </section>
@@ -129,13 +154,13 @@ const Dashboard = () => {
             <div className="dash-docs-list">
               {searchResults.map((doc) => (
                 <Link to={`/documents/${doc.id}`} className="dash-doc-card" key={doc.id}>
-                  <img src={doc.Course.imgUrl} alt="cover" className="dash-doc-cover" />
+                  <img src={doc.imgUrl || doc.Course?.imgUrl} alt="cover" className="dash-doc-cover" />
                   <div className="dash-doc-info">
                     <div className="dash-doc-title">{doc.title}</div>
                     <div className="dash-doc-meta">
                       <span>{doc.Course.name}</span> · <span>{doc.Course.Department.name}</span> · <span>{doc.Course.Department.Faculty.name}</span>
                     </div>
-                    <div className="dash-doc-date">{doc.createdAt}</div>
+                    <div className="dash-doc-date">{formatDateVN(doc.createdAt)}</div>
                     <div className="dash-doc-actions">
                       <button className="dash-doc-view">Xem nhanh</button>
                       <button className="dash-doc-bookmark"><FaBookmark /></button>
@@ -154,13 +179,13 @@ const Dashboard = () => {
         <div className="dash-docs-list">
           {filteredDocs.map((doc) => (
             <Link to={`/documents/${doc.id}`} className="dash-doc-card" key={doc.id}>
-              <img src={doc.Course.imgUrl} alt="cover" className="dash-doc-cover" />
+              <img src={doc.imgUrl || doc.Course?.imgUrl} alt="cover" className="dash-doc-cover" />
               <div className="dash-doc-info">
                 <div className="dash-doc-title">{doc.title}</div>
                 <div className="dash-doc-meta">
                   <span>{doc.Course.name}</span> · <span>{doc.Course.Department.name}</span> · <span>{doc.Course.Department.Faculty.name}</span>
                 </div>
-                <div className="dash-doc-date">{doc.createdAt}</div>
+                <div className="dash-doc-date">{formatDateVN(doc.createdAt)}</div>
                 <div className="dash-doc-actions">
                   <span className="dash-doc-view">Xem nhanh</span>
                   <span className="dash-doc-bookmark"><FaBookmark /></span>
@@ -198,11 +223,11 @@ const Dashboard = () => {
       <section className="dash-section">
         <div className="dash-section-title">📚 Các môn học</div>
         <div className="dash-subjects-list">
-          {docs.map((docs) => (
-            <div className="dash-subject-card" key={docs.Course.id}>
-              <div className="dash-subject-name">{docs.Course.name}</div>
-              <div className="dash-subject-faculty">{docs.Course.Department.name}</div>
-              <div className="dash-subject-school">{docs.Course.Department.Faculty.name}</div>
+          {course.map((course) => (
+            <div className="dash-subject-card" key={course.id}>
+              <div className="dash-subject-name">{course.name}</div>
+              <div className="dash-subject-faculty">{course.Department.name}</div>
+              <div className="dash-subject-school">{course.Department.Faculty.name}</div>
             </div>
           ))}
         </div>

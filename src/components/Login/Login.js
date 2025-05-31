@@ -32,6 +32,7 @@ const Login = () => {
       <form className="login-form" onSubmit={handleSubmit}>
         <div className="login-title">Đăng Nhập</div>
         <div className="login-label">Email</div>
+        <div className="login-pass-group">
         <input
           className="login-input"
           type="email"
@@ -41,6 +42,7 @@ const Login = () => {
           placeholder="Email"
           required
         />
+        </div>
         <div className="login-label">Mật Khẩu</div>
         <div className="login-pass-group">
           <input

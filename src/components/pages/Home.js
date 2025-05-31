@@ -89,7 +89,6 @@ const Home = () => {
           ))}
         </div>
         <div className="search-row">
-          <div className="search-label"></div>
           <form className="search-bar" onSubmit={handleSearch}>
             <input
               type="text"

@@ -35,7 +35,7 @@ const UserProfile = () => {
     file: null,
     course_id: '',
     year_id: '',
-    thumbnail: '',
+    imgUrl: '',
   });
 
   const dispatch = useDispatch();
@@ -51,7 +51,6 @@ const UserProfile = () => {
       try {
         const res = await getProfile();
         setUser(res.data.data);
-        // Không cần set giá trị mặc định cho các trường không còn dùng
       } catch (err) {
         console.error('Lỗi khi lấy thông tin user:', err);
       }
@@ -127,9 +126,9 @@ const UserProfile = () => {
         title: form.title,
         description: form.description,
         file_path: url,
-        course_id: parseInt(form.course_id),
-        year_id: parseInt(form.year_id),
-        thumbnail: form.thumbnail,
+        course_id: parseInt(form.course_id) || null,
+        year_id: parseInt(form.year_id) || null,
+        imgUrl: form.imgUrl,
       };
       console.log('DỮ LIỆU GỬI LÊN:', payload);
       const saveRes = await createDocumentByUser(payload);
@@ -141,7 +140,7 @@ const UserProfile = () => {
         file: null,
         course_id: '',
         year_id: '',
-        thumbnail: '',
+        imgUrl: '',
       });
     } catch (err) {
       console.error(err);
@@ -208,9 +207,9 @@ const UserProfile = () => {
             />
             <input
               type="text"
-              name="thumbnail"
-              placeholder="Đường dẫn ảnh thumbnail (nếu có)"
-              value={form.thumbnail}
+              name="imgUrl"
+              placeholder="Đường dẫn ảnh imgUrl (nếu có)"
+              value={form.imgUrl}
               onChange={handleChange}
             />
             <select

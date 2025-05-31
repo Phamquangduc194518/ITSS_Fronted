@@ -17,14 +17,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
 }
 
 .register-title {
   font-size: 2.4rem;
   font-weight: 700;
   color: #6c2596;
-  margin-bottom: 12px;
+  margin-bottom: 30px;
   text-align: center;
   letter-spacing: 1px;
 }
@@ -33,7 +32,7 @@
   align-self: flex-start;
   font-size: 1.08rem;
   color: #6c2596;
-  margin-bottom: 2px;
+  margin-bottom: 3px;
   margin-top: 8px;
   font-weight: 500;
 }
@@ -60,6 +59,7 @@
   width: 100%;
   position: relative;
   display: flex;
+  margin-bottom: 12px;
   align-items: center;
   .register-input {
     padding-right: 38px;
@@ -90,7 +90,7 @@
   font-size: 1.15rem;
   font-weight: 600;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 50px;
   margin-bottom: 8px;
   letter-spacing: 2px;
   transition: background 0.2s, color 0.2s;

@@ -26,7 +26,7 @@ const CommonHeader = () => {
     <header className="common-header">
       <div className="common-header__logo">
         <img src={logoImg} alt="logo" />
-        <span>Tài Liệu App</span>
+        <span>Tài Liệu Hust</span>
       </div>
       <nav className="common-header__menu">
         <Link to="/dashboard">Trang chủ</Link>

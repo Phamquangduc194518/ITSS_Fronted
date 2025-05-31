@@ -228,11 +228,15 @@ export default function AdminPanel() {
           <section className="adminpanel-section">
             <h2>Tạo khoa mới</h2>
             <form className="adminpanel-form" onSubmit={handleAddFaculty}>
+              <div className="form-group">
               <input type="text" placeholder="Tên khoa" value={newFaculty.name} onChange={e => setNewFaculty(f => ({ ...f, name: e.target.value }))} />
+              </div>
+              <div className="form-group">
               <select value={newFaculty.faculty_id} onChange={e => setNewFaculty(f => ({ ...f, faculty_id: e.target.value }))}>
                 <option value="">Chọn trường</option>
                 {schools.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
               </select>
+              </div>
               <button type="submit"><FaPlus /> Thêm khoa</button>
             </form>
             <div className="adminpanel-list faculty-list">

@@ -33,6 +33,10 @@ const searchDocuments = (keyword) => {
     params: { keyword }
   })
 };
+
+const getCourse = () =>{
+  return api.get('/api/user/courses');
+}
 const getAllUsers = () => api.get('/api/admin/users');
 const deleteUser = (id) => api.delete(`/api/admin/users/${id}`);
 
@@ -86,6 +90,7 @@ export {
   deleteDocumentByAdmin,
   getDocuments,
   searchDocuments,
-  createDocumentByUser
+  createDocumentByUser,
+  getCourse
 
 }

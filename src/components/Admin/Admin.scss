@@ -2,7 +2,6 @@
   min-height: 100vh;
   width: 100vw;
   background: linear-gradient(120deg, #e0f7fa 0%, #f1f8e9 60%, #b2dfdb 100%);
-  font-family: 'Inter', Arial, sans-serif;
 }
 
 .adminpanel-header {
@@ -366,22 +365,24 @@
       }
 
       .user-avatar-placeholder {
-        width: 100%;
-        height: 100%;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #e0f7fa;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: #009688;
-        background: #e0f7fa;
-        border-radius: 50%;
-        object-fit: cover;
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: #388e3c;
+        flex-shrink: 0;
+
       }
     }
 
     .user-info {
       flex: 1;
+      min-width: 0;
 
       h3 {
         font-size: 1.1rem;
@@ -391,9 +392,9 @@
       }
 
       .user-email {
-        font-size: 0.9rem;
-        color: #666;
-        margin: 0 0 4px 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
       }
 
       .user-role {

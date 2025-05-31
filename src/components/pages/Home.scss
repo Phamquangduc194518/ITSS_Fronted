@@ -2,7 +2,6 @@
   min-height: 100vh;
   width: 100vw;
   background: linear-gradient(120deg, #e0f7fa 0%, #f1f8e9 60%, #b2dfdb 100%);
-  font-family: 'Inter', Arial, sans-serif;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
@@ -10,22 +9,24 @@
 
 .header {
   width: 100vw;
-  background: rgba(255,255,255,0.98);
+  background: rgba(255, 255, 255, 0.98);
   box-shadow: 0 2px 16px #b2dfdb55;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px 4vw 18px 4vw;
+  padding: 20px 4vw 20px 4vw;
   position: sticky;
   top: 0;
   z-index: 10;
   box-sizing: border-box;
+  flex-wrap: nowrap;
 
   &__left {
     display: flex;
     align-items: center;
     gap: 14px;
   }
+
   &__logo {
     width: 54px;
     height: 54px;
@@ -34,6 +35,7 @@
     object-fit: cover;
     box-shadow: 0 2px 8px #b2dfdb33;
   }
+
   &__title {
     font-size: 2.1rem;
     font-weight: 800;
@@ -42,6 +44,7 @@
     text-shadow: 0 2px 8px #fff6;
     white-space: nowrap;
   }
+
   &__menu {
     display: flex;
     gap: 32px;
@@ -50,14 +53,17 @@
     color: #222;
     flex: 1;
     justify-content: center;
+
     .menu-item {
       cursor: pointer;
       position: relative;
       transition: color 0.2s;
       padding: 6px 0;
+
       &:hover {
         color: #009688;
       }
+
       &::after {
         content: '';
         display: block;
@@ -69,28 +75,63 @@
         left: 0;
         bottom: -4px;
       }
+
       &:hover::after {
         width: 100%;
       }
     }
   }
+
   &__auth {
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 12px;
-    .login-btn, .register-btn {
+    white-space: nowrap;
+
+    .login-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-weight: 600;
       font-size: 1rem;
-      padding: 10px 26px;
+      height: 48px;
+      padding: 0 26px;
+      min-width: 140px;
+      white-space: nowrap;
+      line-height: 1;
       border-radius: 22px;
       border: none;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+      text-align: center;
       box-shadow: 0 2px 8px #b2dfdb33;
+      transition: all 0.2s ease;
+      margin: 0;
     }
+
+    .register-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1rem;
+      height: 48px;
+      padding: 0 26px;
+      min-width: 140px;
+      white-space: nowrap;
+      line-height: 1;
+      border-radius: 22px;
+      border: none;
+      text-align: center;
+      box-shadow: 0 2px 8px #b2dfdb33;
+      transition: all 0.2s ease;
+      margin: 0;
+    }
+
     .login-btn {
       background: #fff;
       color: #388e3c;
       border: 1.5px solid #388e3c;
+
       &:hover {
         background: #388e3c;
         color: #fff;
@@ -98,10 +139,12 @@
         box-shadow: 0 4px 16px #b2dfdb33;
       }
     }
+
     .register-btn {
       background: #b2dfdb;
       color: #388e3c;
       border: 1.5px solid #b2dfdb;
+
       &:hover {
         background: #009688;
         color: #fff;
@@ -129,6 +172,7 @@
   margin-bottom: 32px;
   color: #388e3c;
   text-shadow: 0 2px 16px #e0f7fa;
+
   span {
     font-size: 2.5rem;
     vertical-align: middle;
@@ -142,6 +186,7 @@
   justify-content: center;
   margin-bottom: 36px;
 }
+
 .tag-btn {
   background: linear-gradient(90deg, #e0f7fa 0%, #f1f8e9 100%);
   color: #388e3c;
@@ -153,6 +198,7 @@
   cursor: pointer;
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s, color 0.2s;
   box-shadow: 0 2px 8px #b2dfdb33;
+
   &:hover {
     background: linear-gradient(90deg, #b2dfdb 0%, #e0f7fa 100%);
     color: #009688;
@@ -168,24 +214,26 @@
   gap: 32px;
   margin-bottom: 48px;
   flex-wrap: wrap;
-  background: rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.25);
   border-radius: 18px;
   padding: 18px 18px;
   box-shadow: 0 2px 16px #b2dfdb33;
 }
+
 .search-bar {
   display: flex;
   align-items: center;
+
   input {
     padding: 12px 18px;
     border-radius: 8px 0 0 8px;
     border: 1.5px solid #b2dfdb;
     outline: none;
     font-size: 1.1rem;
-    min-width: 220px;
     background: #fff;
     box-shadow: 0 2px 8px #b2dfdb22;
   }
+
   button {
     padding: 0 18px;
     border-radius: 0 8px 8px 0;
@@ -200,10 +248,12 @@
     align-items: center;
     gap: 8px;
     transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+
     .search-btn-text {
-      display: inline-block;
+      display: block;
       margin-left: 6px;
     }
+
     &:hover {
       background: #009688;
       color: #fff;
@@ -223,7 +273,7 @@
 }
 
 .doc-card {
-  background: rgba(255,255,255,0.99);
+  background: rgba(255, 255, 255, 0.99);
   border-radius: 22px;
   box-shadow: 0 4px 32px #b2dfdb33;
   padding: 32px 36px 28px 36px;
@@ -235,10 +285,12 @@
   border: 2px solid transparent;
   position: relative;
   overflow: hidden;
+
   &:hover {
     box-shadow: 0 12px 48px #b2dfdb55;
     border: 2px solid #b2dfdb;
   }
+
   .doc-type {
     font-size: 1.05rem;
     color: #388e3c;
@@ -246,18 +298,21 @@
     letter-spacing: 1px;
     text-transform: uppercase;
   }
+
   .doc-title {
     font-size: 1.3rem;
     font-weight: 800;
     color: #222;
     margin-bottom: 4px;
   }
+
   .doc-date {
     font-size: 1rem;
     color: #888;
     font-weight: 500;
     margin-bottom: 10px;
   }
+
   .readmore {
     align-self: flex-end;
     background: #fff;
@@ -270,6 +325,7 @@
     cursor: pointer;
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
     box-shadow: 0 2px 8px #b2dfdb22;
+
     &:hover {
       background: #b2dfdb;
       color: #388e3c;
@@ -283,21 +339,26 @@
     max-width: 98vw;
     gap: 24px;
   }
+
   .main-content {
     padding: 32px 2vw 0 2vw;
   }
 }
+
 @media (max-width: 900px) {
   .docs-list {
     grid-template-columns: 1fr;
     gap: 18px;
   }
+
   .main-content {
     padding: 18px 2vw 0 2vw;
   }
+
   .doc-card {
     padding: 18px 6vw;
   }
+
   .header {
     flex-direction: column;
     gap: 10px;
@@ -305,7 +366,8 @@
   }
 }
 
-.search-results-section, .featured-docs-section {
+.search-results-section,
+.featured-docs-section {
   margin-top: 36px;
   padding: 0 24px;
   max-width: 1200px;
@@ -324,7 +386,9 @@
   }
 }
 
-.loading-message, .error-message, .no-results-message {
+.loading-message,
+.error-message,
+.no-results-message {
   text-align: center;
   padding: 24px;
   background: #fff;
